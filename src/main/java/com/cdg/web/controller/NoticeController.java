@@ -6,6 +6,7 @@ import com.cdg.web.controller.request.NoticeModifyRequest;
 import com.cdg.web.controller.response.NoticeResponse;
 import com.cdg.web.controller.response.NoticesResponse;
 import com.cdg.web.db.entity.NoticeRepository;
+import com.cdg.web.db.entity.NoticeSpecification;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -24,7 +25,7 @@ public class NoticeController {
             NoticeGetRequest request,
             @PageableDefault(size = 5, sort = "registerDate") Pageable pageable
     ) {
-        Page<Notice> notices = noticeRepository.findAll(pageable);
+        Page<Notice> notices = noticeRepository.findAll(request.toCriteria(), pageable);
         return ResponseEntity.ok(new NoticesResponse(notices));
     }
 
