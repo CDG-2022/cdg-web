@@ -1,12 +1,10 @@
 package com.cdg.web.controller.request;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 
-@Getter
-@AllArgsConstructor
+@Data
 public class NoticeModifyRequest {
     private String title;
     private String contents;
-    private String author;
+    private Long userId;
 }

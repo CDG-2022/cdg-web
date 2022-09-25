@@ -1,12 +1,15 @@
 package com.cdg.web.controller.request;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+import com.cdg.web.controller.Notice;
+import lombok.Data;
 
-@Getter
-@AllArgsConstructor
+@Data
 public class NoticeCreateRequest {
+    private Long userId;
     private String title;
     private String contents;
-    private String author;
+
+    public Notice toDomain() {
+        return new Notice(userId, title, contents);
+    }
 }
