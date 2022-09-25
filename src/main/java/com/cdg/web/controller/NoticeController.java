@@ -18,14 +18,6 @@ public class NoticeController {
 
     private final NoticeRepository noticeRepository;
 
-    private List<Notice> list = List.of(
-//            new Notice(0, "제목1", "내용", "최강훈", LocalDate.now(), LocalDate.now()),
-//            new Notice(1, "제목2", "내용", "최강훈", LocalDate.now(), LocalDate.now()),
-//            new Notice(2, "제목3", "내용", "최강훈", LocalDate.now(), LocalDate.now()),
-//            new Notice(3, "제목4", "내용", "최강훈", LocalDate.now(), LocalDate.now()),
-//            new Notice(4, "제목5", "내용", "최강훈", LocalDate.now(), LocalDate.now())
-    );
-
     @GetMapping("/notices")
     public ResponseEntity<List<NoticeResponse>> getList(NoticeGetRequest request) {
         List<Notice> notices = noticeRepository.findAll();
