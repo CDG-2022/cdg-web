@@ -4,13 +4,14 @@ import com.cdg.web.controller.request.NoticeCreateRequest;
 import com.cdg.web.controller.request.NoticeGetRequest;
 import com.cdg.web.controller.request.NoticeModifyRequest;
 import com.cdg.web.controller.response.NoticeResponse;
+import com.cdg.web.controller.response.NoticesResponse;
 import com.cdg.web.db.entity.NoticeRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
@@ -19,9 +20,12 @@ public class NoticeController {
     private final NoticeRepository noticeRepository;
 
     @GetMapping("/notices")
-    public ResponseEntity<List<NoticeResponse>> getList(NoticeGetRequest request) {
-        List<Notice> notices = noticeRepository.findAll();
-        return ResponseEntity.ok(notices.stream().map(it -> new NoticeResponse(it)).collect(Collectors.toList()));
+    public ResponseEntity<NoticesResponse> getList(
+            NoticeGetRequest request,
+            @PageableDefault(size = 5, sort = "registerDate") Pageable pageable
+    ) {
+        Page<Notice> notices = noticeRepository.findAll(pageable);
+        return ResponseEntity.ok(new NoticesResponse(notices));
     }
 
     @GetMapping("/notices/{id}")
