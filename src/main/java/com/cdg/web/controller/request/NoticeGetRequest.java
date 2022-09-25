@@ -1,10 +1,8 @@
 package com.cdg.web.controller.request;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 
-@Getter
-@AllArgsConstructor
+@Data
 public class NoticeGetRequest {
     private int page;
     private int size;
