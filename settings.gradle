@@ -1,0 +1,5 @@
+rootProject.name = 'cdg-project'
+
+include 'sample-api'
+include 'cdg-web'
+include 'storage:db'
